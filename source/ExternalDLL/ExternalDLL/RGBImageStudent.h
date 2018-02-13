@@ -6,6 +6,7 @@
 
 #pragma once
 #include "RGBImage.h"
+#include <vector>
 class RGBImageStudent : public RGBImage {
 public:
 
@@ -22,4 +23,7 @@ public:
 
 	RGB getPixel(int x, int y) const;
 	RGB getPixel(int i) const;
+
+private:
+	std::vector<std::vector<RGB> > storage;
 };
