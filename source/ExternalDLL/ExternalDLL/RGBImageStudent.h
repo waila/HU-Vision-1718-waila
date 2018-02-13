@@ -6,6 +6,7 @@
 
 #pragma once
 #include "RGBImage.h"
+#include <iostream>
 #include <vector>
 class RGBImageStudent : public RGBImage {
 public:

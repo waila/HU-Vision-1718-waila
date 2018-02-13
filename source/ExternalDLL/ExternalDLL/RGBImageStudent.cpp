@@ -1,16 +1,18 @@
 #include "RGBImageStudent.h"
-#include <windows.h>
 
 RGBImageStudent::RGBImageStudent() : RGBImage() {
 	storage = std::vector<std::vector<RGB> >();
+	std::cout << "Dit niet";
 }
 
 RGBImageStudent::RGBImageStudent(const RGBImageStudent &other) : RGBImage(other.getWidth(), other.getHeight()) {
 	storage = other.storage;
+	std::cout << "Dit niet";
 }
 
 RGBImageStudent::RGBImageStudent(const int width, const int height) : RGBImage(width, height) {	
 	storage = std::vector<std::vector<RGB> >(); // Initialize storage
+	std::cout << "Dit niet";
 }
 
 RGBImageStudent::~RGBImageStudent() {}
@@ -18,6 +20,7 @@ RGBImageStudent::~RGBImageStudent() {}
 void RGBImageStudent::set(const int width, const int height) {
 	RGBImage::set(width, height);
 	storage = std::vector<std::vector<RGB> >();
+	std::cout << "Dit niet";
 }
 
 void RGBImageStudent::set(const RGBImageStudent &other) {
