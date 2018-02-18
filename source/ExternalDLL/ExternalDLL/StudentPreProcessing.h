@@ -9,7 +9,7 @@
 #include <iostream>
 class StudentPreProcessing : public PreProcessing {
 public:
-	IntensityImage * stepToIntensityImage(const RGBImage &image) const;
+	IntensityImage * stepToIntensityImage(const RGBImage &image) const;//DEZE moeten implementeren
 	IntensityImage * stepScaleImage(const IntensityImage &image) const;
 	IntensityImage * stepEdgeDetection(const IntensityImage &image) const;
 	IntensityImage * stepThresholding(const IntensityImage &image) const;

@@ -11,11 +11,14 @@ IntensityImageStudent::IntensityImageStudent(const IntensityImageStudent &other)
 }
 
 IntensityImageStudent::IntensityImageStudent(const int width, const int height) : IntensityImage(width, height) {
-	storage = std::vector<std::vector<Intensity> >(); // Initialize storage
+	//TODO: Initialize pixel storage
+	//storage = std::vector<std::vector<Intensity> >(); //we gebruiken vector dus hoef niet?
 	std::cout << "DICKS OUT FOR HARAMBE";
 }
 
-IntensityImageStudent::~IntensityImageStudent() {}
+IntensityImageStudent::~IntensityImageStudent() {
+	storage.clear();
+}
 
 void IntensityImageStudent::set(const int width, const int height) {
 	IntensityImageStudent::set(width, height);
@@ -24,7 +27,8 @@ void IntensityImageStudent::set(const int width, const int height) {
 
 void IntensityImageStudent::set(const IntensityImageStudent &other) {
 	IntensityImageStudent::set(other.getWidth(), other.getHeight());
-	storage = std::vector<std::vector<Intensity> >();
+	//storage = std::vector<std::vector<Intensity> >();
+	storage = other.storage;
 }
 
 void IntensityImageStudent::setPixel(int x, int y, Intensity pixel) {
