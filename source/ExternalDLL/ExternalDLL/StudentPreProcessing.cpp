@@ -4,16 +4,17 @@
 
 
 IntensityImage * StudentPreProcessing::stepToIntensityImage(const RGBImage &image) const {
-	std::cout << "IN STEP TO INTENSITY";
+	/*
+	Sauce: https://stackoverflow.com/questions/687261/converting-rgb-to-grayscale-intensity
+	*/
 	const double RintensityWeight = 0.2989;
 	const double GintensityWeight = 0.5870;
 	const double BintensityWeight = 0.1140;
 
-	IntensityImageStudent * II = new IntensityImageStudent();
+	IntensityImageStudent * II = new IntensityImageStudent(image.getWidth(), image.getHeight());
 
 	for (int i = 0; i < image.getWidth(); ++i)
 	{
-		std::cout << "looped";
 		for (int j = 0; j < image.getHeight(); j++)
 		{
 			RGB currentPixel = image.getPixel(i, j);
@@ -25,7 +26,6 @@ IntensityImage * StudentPreProcessing::stepToIntensityImage(const RGBImage &imag
 			II->setPixel(i, j, currentIntensity);
 		}
 	}
-	std::cout << "done with loop";
 	return II;
 }
 

@@ -26,5 +26,8 @@ public:
 	RGB getPixel(int i) const;
 
 private:
+	std::vector<std::vector<RGB> > getEmptyStorage();
+	std::vector<std::vector<RGB> > fillStorage(const int width, const int height);
 	std::vector<std::vector<RGB> > storage;
+
 };

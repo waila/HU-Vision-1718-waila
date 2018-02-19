@@ -71,6 +71,10 @@ double SonnetXVIII::SometimeTooHotTheEyeOfHeavenShines() const {
 	for (int i = 0; i < size; i++){
 		count += WilliamShakespeare[i];
 	}
+	if (count == 0)
+	{
+		return count;
+	}
 	return count / WilliamShakespeare.size();
 }
 

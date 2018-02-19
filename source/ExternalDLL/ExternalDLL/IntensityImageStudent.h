@@ -24,5 +24,8 @@ public:
 	Intensity getPixel(int x, int y) const;
 	Intensity getPixel(int i) const;
 private:
+	std::vector<std::vector<Intensity> > getEmptyStorage();
+	std::vector<std::vector<Intensity> > fillStorage(const int width, const int height);
 	std::vector<std::vector<Intensity> > storage;
+
 };

@@ -1,30 +1,27 @@
 #include "IntensityImageStudent.h"
 
 IntensityImageStudent::IntensityImageStudent() : IntensityImage() {
-	storage = std::vector<std::vector<Intensity> >();
-	std::cout << "DICKS OUT FOR HARAMBE";
+	storage = getEmptyStorage();
 }
 
 IntensityImageStudent::IntensityImageStudent(const IntensityImageStudent &other) : IntensityImage(other.getWidth(), other.getHeight()) {
 	storage = other.storage;
-	std::cout << "DICKS OUT FOR HARAMBE";
 }
 
 IntensityImageStudent::IntensityImageStudent(const int width, const int height) : IntensityImage(width, height) {
-	storage = std::vector<std::vector<Intensity> >(); // Initialize storage
-	std::cout << "DICKS OUT FOR HARAMBE";
+	storage = fillStorage(width, height); // Initialize storage
 }
 
 IntensityImageStudent::~IntensityImageStudent() {}
 
 void IntensityImageStudent::set(const int width, const int height) {
-	IntensityImageStudent::set(width, height);
-	storage = std::vector<std::vector<Intensity> >();
+	IntensityImage::set(width, height);
+	storage = fillStorage(width, height);
 }
 
 void IntensityImageStudent::set(const IntensityImageStudent &other) {
-	IntensityImageStudent::set(other.getWidth(), other.getHeight());
-	storage = std::vector<std::vector<Intensity> >();
+	IntensityImage::set(other.getWidth(), other.getHeight());
+	storage = other.storage;
 }
 
 void IntensityImageStudent::setPixel(int x, int y, Intensity pixel) {
@@ -47,4 +44,27 @@ Intensity IntensityImageStudent::getPixel(int i) const {
 	int y = i - x;
 
 	return storage[x][y];
+}
+
+std::vector<std::vector<Intensity> > IntensityImageStudent::getEmptyStorage()
+{
+	std::vector<std::vector<Intensity> > filledStorage = std::vector<std::vector<Intensity > >();
+	return filledStorage;
+}
+
+std::vector<std::vector<Intensity> > IntensityImageStudent::fillStorage(const int width, const int height)
+{
+	std::vector<std::vector<Intensity> > filledStorage = std::vector<std::vector<Intensity > >();
+	const Intensity DEFAULT_INTENSITY = Intensity(0);
+	std::vector<Intensity> IntensityStorage = std::vector < Intensity >();
+	for (int j = 0; j < height; ++j)
+	{
+		IntensityStorage.push_back(DEFAULT_INTENSITY);
+	}
+
+	for (int i = 0; i < width; ++i) {
+		filledStorage.push_back(IntensityStorage);
+	}
+
+	return filledStorage;
 }
