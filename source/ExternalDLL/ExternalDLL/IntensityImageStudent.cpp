@@ -12,7 +12,9 @@ IntensityImageStudent::IntensityImageStudent(const int width, const int height) 
 	storage = fillStorage(width, height); // Initialize storage
 }
 
-IntensityImageStudent::~IntensityImageStudent() {}
+IntensityImageStudent::~IntensityImageStudent() {
+	storage.clear();
+}
 
 void IntensityImageStudent::set(const int width, const int height) {
 	IntensityImage::set(width, height);

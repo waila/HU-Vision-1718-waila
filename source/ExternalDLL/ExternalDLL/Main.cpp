@@ -3,6 +3,8 @@
 * Unauthorized copying of this file, via any medium is strictly prohibited
 * Proprietary and confidential
 */
+//voor zelf beter als .exe runnen en standard plaatje laten kiezen
+//student preprocessing implementeren voor naar gray
 
 #include <iostream> //std::cout
 #include "ImageIO.h" //Image load and save functionality
@@ -15,8 +17,8 @@ bool executeSteps(DLLExecution * executor);
 
 int main(int argc, char * argv[]) {
 
-	ImageFactory::setImplementation(ImageFactory::DEFAULT);
-	//ImageFactory::setImplementation(ImageFactory::STUDENT);
+	//ImageFactory::setImplementation(ImageFactory::DEFAULT);
+	ImageFactory::setImplementation(ImageFactory::STUDENT);
 
 
 	ImageIO::debugFolder = "D:\\Users\\Rolf\\Downloads\\FaceMinMin";
@@ -63,7 +65,7 @@ int main(int argc, char * argv[]) {
 bool executeSteps(DLLExecution * executor) {
 
 	//Execute the four Pre-processing steps
-	if (!executor->executePreProcessingStep1(false)) {
+	if (!executor->executePreProcessingStep1(false)) {  //deze stap op true als we willen testen
 		std::cout << "Pre-processing step 1 failed!" << std::endl;
 		return false;
 	}

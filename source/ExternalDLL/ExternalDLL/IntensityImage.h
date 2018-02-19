@@ -21,4 +21,5 @@ public:
 
 	virtual Intensity getPixel(int x, int y) const = 0;
 	virtual Intensity getPixel(int i) const = 0;
+
 };
