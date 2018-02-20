@@ -31,10 +31,17 @@ void IntensityImageStudent::setPixel(int x, int y, Intensity pixel) {
 }
 
 void IntensityImageStudent::setPixel(int i, Intensity pixel) {
-	int x = floor(double(i / getWidth()) * getWidth());
-	int y = i - x;
+	
+	
+	int x = floor(double (i / getWidth()) );
+	int y = i - (x * getWidth());
 
-	storage[x][y] = pixel;
+	//als 0 is dan niks doen
+
+	std::vector<Intensity> currentPixel = storage.at(0);
+
+	currentPixel[y] = pixel;
+	storage[x] = currentPixel;
 }
 
 Intensity IntensityImageStudent::getPixel(int x, int y) const {
@@ -42,8 +49,8 @@ Intensity IntensityImageStudent::getPixel(int x, int y) const {
 }
 
 Intensity IntensityImageStudent::getPixel(int i) const {
-	int x = floor(double(i / getWidth()) * getWidth());
-	int y = i - x;
+	int x = floor(double(i / getWidth()));
+	int y = i - (x * getWidth());
 
 	return storage[x][y];
 }
