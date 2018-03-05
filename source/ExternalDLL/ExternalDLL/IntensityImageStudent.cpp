@@ -1,4 +1,5 @@
 #include "IntensityImageStudent.h"
+#include <iostream>
 
 IntensityImageStudent::IntensityImageStudent() : IntensityImage() {
 	storage = getEmptyStorage();
@@ -31,14 +32,12 @@ void IntensityImageStudent::setPixel(int x, int y, Intensity pixel) {
 }
 
 void IntensityImageStudent::setPixel(int i, Intensity pixel) {
-	
-	
-	int x = floor(double (i / getWidth()) );
-	int y = i - (x * getWidth());
+	int x = floor(double (i / getHeight()) );
+	int y = i - (x * getHeight());
 
 	//als 0 is dan niks doen
 
-	std::vector<Intensity> currentPixel = storage.at(0);
+	std::vector<Intensity> currentPixel = storage.at(x);
 
 	currentPixel[y] = pixel;
 	storage[x] = currentPixel;
@@ -49,10 +48,10 @@ Intensity IntensityImageStudent::getPixel(int x, int y) const {
 }
 
 Intensity IntensityImageStudent::getPixel(int i) const {
-	int x = floor(double(i / getWidth()));
-	int y = i - (x * getWidth());
+	int x = floor(double(i / getHeight()));
+	int y = i - (x * getHeight());
 
-	return storage[x][y];
+	return storage.at(x).at(y);
 }
 
 std::vector<std::vector<Intensity> > IntensityImageStudent::getEmptyStorage()
@@ -66,14 +65,28 @@ std::vector<std::vector<Intensity> > IntensityImageStudent::fillStorage(const in
 	std::vector<std::vector<Intensity> > filledStorage = std::vector<std::vector<Intensity > >();
 	const Intensity DEFAULT_INTENSITY = Intensity(0);
 	std::vector<Intensity> IntensityStorage = std::vector < Intensity >();
-	for (int j = 0; j < height; ++j)
+	for (int j = 0; j <= height; ++j)
 	{
 		IntensityStorage.push_back(DEFAULT_INTENSITY);
 	}
 
-	for (int i = 0; i < width; ++i) {
+	for (int i = 0; i <= width; ++i) {
 		filledStorage.push_back(IntensityStorage);
 	}
 
 	return filledStorage;
+}
+
+void IntensityImageStudent::ToString()
+{
+	/* First we iterate all y indexes*/
+	for (int i = 0; i < storage.at(0).size(); ++i)
+	{
+		/* While iterating y indexes we iterate through all x indexes to get a line */
+		for (int j = 0; j < storage.size(); ++j)
+		{
+			std::cout << storage.at(j).at(i) << ' ';
+		}
+		std::cout << std::endl;
+	}
 }

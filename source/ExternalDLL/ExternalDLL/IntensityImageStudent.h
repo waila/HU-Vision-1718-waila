@@ -23,6 +23,8 @@ public:
 
 	Intensity getPixel(int x, int y) const;
 	Intensity getPixel(int i) const;
+
+	void ToString();
 private:
 	std::vector<std::vector<Intensity> > getEmptyStorage();
 	std::vector<std::vector<Intensity> > fillStorage(const int width, const int height);

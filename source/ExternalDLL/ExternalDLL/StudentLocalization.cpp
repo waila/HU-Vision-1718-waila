@@ -20,7 +20,7 @@ bool StudentLocalization::stepFindNoseEndsAndEyes(const IntensityImage &image, F
 bool StudentLocalization::stepFindExactEyes(const IntensityImage &image, FeatureMap &features) const {
 	
 	const int BLACK = 220;
-	const Intensity BLACKPIXEL = Intensity(250);
+	const Intensity BLACKPIXEL = Intensity(255);
 	IntensityImageStudent copy = IntensityImageStudent(image.getWidth(), image.getHeight());
 
 	/*
@@ -191,6 +191,6 @@ bool StudentLocalization::stepFindExactEyes(const IntensityImage &image, Feature
 			*/
 		}
 	}
-
+	copy.ToString();
 	return false;
 }
