@@ -1,5 +1,6 @@
 #include "StudentLocalization.h"
 #include "IntensityImageStudent.h"
+#include "Point2D.h"
 
 bool StudentLocalization::stepFindHead(const IntensityImage &image, FeatureMap &features) const {
 	return false;
@@ -19,10 +20,23 @@ bool StudentLocalization::stepFindNoseEndsAndEyes(const IntensityImage &image, F
 
 bool StudentLocalization::stepFindExactEyes(const IntensityImage &image, FeatureMap &features) const {
 	
-	const int BLACK = 220;
+	const int BLACK = 240;
 	const Intensity BLACKPIXEL = Intensity(255);
 	IntensityImageStudent copy = IntensityImageStudent(image.getWidth(), image.getHeight());
+	Point2D<double> leftEyeRectTop(76, 119);
+	Point2D<double> leftEyeRectBot(76, 120);
+	
+	Point2D<double> rightEyeRectTop(130, 114);
+	Point2D<double> rightEyeRectBot(130, 120);
+	
+	Feature leftEyeRect(13, leftEyeRectTop);
+	leftEyeRect.addPoint(leftEyeRectBot);
 
+	Feature rightEyeRect(14, rightEyeRectTop);
+	rightEyeRect.addPoint(rightEyeRectBot);
+
+	features.putFeature(leftEyeRect);
+	features.putFeature(rightEyeRect);
 	/*
 	* 0 1 0 indexes: 1
 	* 1 1 1 indexes: 0, 1, 2
@@ -191,6 +205,6 @@ bool StudentLocalization::stepFindExactEyes(const IntensityImage &image, Feature
 			*/
 		}
 	}
-	copy.ToString();
-	return false;
+	//copy.ToString();
+	return true;
 }

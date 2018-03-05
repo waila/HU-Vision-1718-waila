@@ -1,5 +1,6 @@
 #include "IntensityImageStudent.h"
 #include <iostream>
+#include <fstream>
 
 IntensityImageStudent::IntensityImageStudent() : IntensityImage() {
 	storage = getEmptyStorage();
@@ -63,7 +64,7 @@ std::vector<std::vector<Intensity> > IntensityImageStudent::getEmptyStorage()
 std::vector<std::vector<Intensity> > IntensityImageStudent::fillStorage(const int width, const int height)
 {
 	std::vector<std::vector<Intensity> > filledStorage = std::vector<std::vector<Intensity > >();
-	const Intensity DEFAULT_INTENSITY = Intensity(0);
+	const Intensity DEFAULT_INTENSITY = Intensity(1);
 	std::vector<Intensity> IntensityStorage = std::vector < Intensity >();
 	for (int j = 0; j <= height; ++j)
 	{
@@ -79,14 +80,17 @@ std::vector<std::vector<Intensity> > IntensityImageStudent::fillStorage(const in
 
 void IntensityImageStudent::ToString()
 {
+	std::ofstream myfile;
+	myfile.open("outputFaggot.txt");
 	/* First we iterate all y indexes*/
 	for (int i = 0; i < storage.at(0).size(); ++i)
 	{
 		/* While iterating y indexes we iterate through all x indexes to get a line */
 		for (int j = 0; j < storage.size(); ++j)
 		{
-			std::cout << storage.at(j).at(i) << ' ';
+			myfile << static_cast<int>(storage.at(j).at(i)) << ' ';
 		}
-		std::cout << std::endl;
+		myfile << std::endl;
 	}
+	myfile.close();
 }
