@@ -22,25 +22,78 @@ bool StudentLocalization::stepFindExactEyes(const IntensityImage &image, Feature
 	
 	const int BLACK = 240;
 	const Intensity BLACKPIXEL = Intensity(255);
-	IntensityImageStudent copy = IntensityImageStudent(image.getWidth(), image.getHeight());
-	Point2D<double> leftEyeRectTop(76, 119);
-	Point2D<double> leftEyeRectBot(76, 120);
-	
-	Point2D<double> rightEyeRectTop(130, 114);
-	Point2D<double> rightEyeRectBot(130, 120);
-	
-	Feature leftEyeRect(13, leftEyeRectTop);
-	leftEyeRect.addPoint(leftEyeRectBot);
+	IntensityImageStudent copy = IntensityImageStudent(image.getWidth(), image.getHeight());//volgens mij werkt dit niet
 
-	Feature rightEyeRect(14, rightEyeRectTop);
-	rightEyeRect.addPoint(rightEyeRectBot);
+	Feature f = features.getFeature(1);
+	int headX = f.getX();
+	int headY = f.getY();
 
-	features.putFeature(leftEyeRect);
-	features.putFeature(rightEyeRect);
+	Feature ff = features.getFeature(2);
+	int headXx = ff.getX();
+	int headYy = ff.getY();
+
+	int centerHeadQuater = (headXx - headX) * 0.25;
+	int centerHeadLeftX = headX + centerHeadQuater;
+	int headCenterRightY = headXx - centerHeadQuater;
+
+
+	int pix = 255;
+
+	int indextemp = headY * image.getWidth() + (centerHeadLeftX - 1);
+	for (int i = indextemp; i > 0; i = i - image.getWidth()){
+		int x = (i % image.getWidth()); //x
+		int y = (i / image.getWidth()); //y
+
+		if (image.getPixel(x, y) == 0){
+			Point2D<double> leftEyeRectBot(x, y+1);
+			Point2D<double> leftEyeRectTop(x- 5, y- 10);
+			Feature leftEyeRect(13, leftEyeRectTop);
+			leftEyeRect.addPoint(leftEyeRectBot);
+			features.putFeature(leftEyeRect);
+			break;
+		}
+	}
+
+	indextemp = headYy * image.getWidth() + (headCenterRightY - 1);
+	for (int i = indextemp; i > 0; i = i - image.getWidth()){
+		int x2 = (i % image.getWidth()); //x
+		int y2 = (i / image.getWidth()); //y
+
+		pix = image.getPixel(x2, y2);
+		if (image.getPixel(x2, y2) == 0){
+			Point2D<double> rightEyeRectBot(x2, y2+1);
+			Point2D<double> rightEyeRectTop(x2 - 5, y2 - 10);
+			Feature rightEyeRect(14, rightEyeRectTop);
+			rightEyeRect.addPoint(rightEyeRectBot);
+			features.putFeature(rightEyeRect);
+			break;
+		}
+	}
+	/*
+	
+
+	//48 100 148. 48- 148 = -100*-1 = 100 is center. delen door 4 = 25. dus 25 + 48 en 148 - 25 doen.
+
+	int indextemp = f.getY() * copy.getWidth() + f.getX() - 1;
+	for (int i = indextemp; i > 0; i = i - copy.getWidth()){
+		//reverse x and y to index
+
+		int x = (i / copy.getWidth()); //x
+		int y = (i % copy.getWidth()); //y
+		if (copy.getPixel(i) == 0){
+			break;
+			
+	*/
+
 	/*
 	* 0 1 0 indexes: 1
 	* 1 1 1 indexes: 0, 1, 2
 	* 0 1 0 indexes: 1
+
+	2,3 = 8
+
+	2(x) * 3(width) = 6 + (y-1)
+
 	*/
 
 	/*
